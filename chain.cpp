@@ -18,7 +18,16 @@ Chain::~Chain(){
  * @param ndata The data to be inserted.
  */
 void Chain::insertBack(const Block & ndata){
-  /* your code here */
+Node* inode = new Node(ndata);
+head_->prev->next = inode;
+inode->prev = head_->prev;
+head_->prev = inode;
+inode->next = head_;
+//Node* curr = head_->prev;
+cout << head_->prev << endl;
+cout << head_->next << endl;
+cout << head_->prev->prev << endl;
+length_++;
 }
 
 /**
