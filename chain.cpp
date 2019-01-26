@@ -14,18 +14,9 @@ Chain::~Chain(){
     printf("deleting head");
     delete head_;
     head_ = NULL; 
-    printf("deleting length");
-    //Delete the length; 
-    delete[] length_;
-    length_; = NULL;
-    printf("deleting height");
-    //Delete the height; 
-    delete[] height_;
-    height_; = NULL;
-    printf("deleting width");
-    //Delete the width; 
-    delete[] width_;
-    width_; = NULL;
+    length_ = 0;
+    height_ = 0;
+    width_ = 0;
     printf("done deleting chain");
     return;  
   }
@@ -33,35 +24,21 @@ Chain::~Chain(){
     //Clear all dynamically allocated data first
     printf("deleting dynamic data");
     clear();
-
+    
     //After deleting all nodes except head.
     //delete head_->next
     delete head_-> next;
     head_->next = NULL;
-
     //delete the head_->prev
     delete head_-> prev;
     head_->prev = NULL;
-
     //delete head_
     delete head_;
     head_ = NULL;
+    length_ = 0;
+    height_ = 0;
+    width_ = 0;
 
-    printf("deleting length");
-    //Delete the length; 
-    delete[] length_;
-    length_; = NULL;
-
-    printf("deleting height");
-    //Delete the height; 
-    delete[] height_;
-    height_; = NULL;
-
-    printf("deleting width");
-    //Delete the width; 
-    delete[] width_;
-    width_; = NULL;
-    
     printf("done deleting chain");  
     return;
     //Ends the function
@@ -168,7 +145,7 @@ void Chain::clear() {
       //set up temporary variable to delete stuff
       temp = curr;
       //Increment the curr to the next one
-      curr = temp->next
+      curr = temp->next;
       //delete the ptr of temp that points to temp->prev
       temp->prev = NULL;
       //delete the ptr of temp that points to temp->next
