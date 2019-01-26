@@ -76,23 +76,23 @@ void Chain::insertBack(const Block & ndata){
  */
 void Chain::moveBack(int startPos, int len, int dist){
   /* your code here */
-    dist = checkAndReturn(startPos, len, dist);
-  Node* curr = walk(head_->next, startPos);
-  Node* end = walk(head_->next, (startPos + len - 1));
+  dist = checkAndReturn(startPos, len, dist);
+  Node* curr = walk(head_, startPos);
+  Node* end = walk(head_, (startPos + len - 1));
 
-  Node* bcurr = walk(head_->next, (startPos - 1));
-  Node* aend = walk(head_->next, (startPos + len));
+  Node* bcurr = walk(head_, (startPos - 1));
+  Node* aend = walk(head_, (startPos + len));
 
 
-  Node* t1 = walk(head_->next, (startPos + len + dist - 1));
-  Node* t2 = walk(head_->next, (startPos + len + dist));
+  Node* t1 = walk(head_, (startPos + len + dist - 1));
+  Node* t2 = walk(head_, (startPos + len + dist));
 
   curr->prev = t1;
   t1->next = curr;
   bcurr->next = aend;
   aend->prev = bcurr;
   t2->prev = end;
-  end->next = t2;
+  end->next = t2; 
 }
 
 /**
