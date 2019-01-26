@@ -24,9 +24,9 @@ int Block::height() const{
 
 // Returns width of the block
 int Block::width() const{
-  if(height() > 0){
-  return data[0].size();
-  }
+   if(height() > 0){
+    return data[0].size();
+    }
   return 0;
 }
 
@@ -37,15 +37,14 @@ void Block::greyscale(){
     data[i][j].s = 0;
     }
   }
-  cout << "greyscale done" << endl;
 }
 
 // Places the block on the image
 void Block::render(PNG & img, int column) const{
   for(unsigned y = 0; y < height(); y++){
-    for(int x = column; x < (column+ width()); x++){
+    for(int x = column; x < (width() + column); x++){
       HSLAPixel* pixel = img.getPixel(x,y);
-      pixel->s = data[y][x - column].s;
+      pixel->s = data[y][x-column].s;
     }
   }
 }
