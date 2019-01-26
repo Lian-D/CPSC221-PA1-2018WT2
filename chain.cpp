@@ -8,54 +8,65 @@
  * memory does not leak on destruction of a chain.
  */
 Chain::~Chain(){
-  Node* curr;
-  Node* temp;
-  // If there is no prev or next, then we delete the head
+  //If we are given an empty list to begin with
   if (head_->next == NULL && head_->prev == NULL){
+    //Delete the head; 
+    printf("deleting head");
     delete head_;
-    head_ = NULL;   
+    head_ = NULL; 
+    printf("deleting length");
+    //Delete the length; 
+    delete[] length_;
+    length_; = NULL;
+    printf("deleting height");
+    //Delete the height; 
+    delete[] height_;
+    height_; = NULL;
+    printf("deleting width");
+    //Delete the width; 
+    delete[] width_;
+    width_; = NULL;
+    printf("done deleting chain");
     return;  
   }
-  // If there is something after the head,
-  if (head_->next != NULL){
-    //If curr is not head
-    //This should increment it all the way until we get back
-    //to the start again once we reach the last node 
-    while (curr != head_){
-      //set up temporary variable to delete stuff
-      temp = curr;
-      //Increment the curr to the next one
-      curr = temp->next
-      //delete the ptr of temp that points to temp->prev
-      temp->prev = NULL;
-      //delete the ptr of temp that points to temp->next
-      //the next is already retained by curr;
-      temp->next = NULL;
-      //delete the node of temp
-      delete temp;
-      //set temp to Null for cycle to repeat;
-      temp = NULL;
-    }
+  else {
+    //Clear all dynamically allocated data first
+    printf("deleting dynamic data");
+    clear();
 
     //After deleting all nodes except head.
-    //delete the value of head_->next
+    //delete head_->next
     delete head_-> next;
-    //set the pointer of next to NULL
     head_->next = NULL;
-    
-    //delete the value of head_->prev
+
+    //delete the head_->prev
     delete head_-> prev;
-    //set the pointer of prev to NULL
     head_->prev = NULL;
 
-    //delete the value of head_
+    //delete head_
     delete head_;
-    //set the pointer of prev to NULL
-    head_ = NULL;  
-    //Ends the function 
+    head_ = NULL;
+
+    printf("deleting length");
+    //Delete the length; 
+    delete[] length_;
+    length_; = NULL;
+
+    printf("deleting height");
+    //Delete the height; 
+    delete[] height_;
+    height_; = NULL;
+
+    printf("deleting width");
+    //Delete the width; 
+    delete[] width_;
+    width_; = NULL;
+    
+    printf("done deleting chain");  
     return;
-    }
-  }
+    //Ends the function
+  } 
+}
 
 /**
  * Inserts a new node at the end of the List.
@@ -138,8 +149,45 @@ void Chain::weave(Chain & other) { // leaves other empty.
  * to zero.  After clear() the chain represents an empty chain.
  */
 void Chain::clear() {
-  /* your code here */
-}
+  Node* curr;
+  Node* temp;
+  // If there is no prev or next,
+  if (head_->next == NULL && head_->prev == NULL){
+    printf("empty list provided");
+    //Do nothing 
+    return;  
+  }
+  // If there is something after the head,
+  if (head_->next != NULL){
+    printf("list with nodes provided");
+    //If curr is not head
+    //This should increment it all the way until we get back
+    //to the start again once we reach the last node 
+    while (curr != head_){
+      printf("looping to deleted a node");
+      //set up temporary variable to delete stuff
+      temp = curr;
+      //Increment the curr to the next one
+      curr = temp->next
+      //delete the ptr of temp that points to temp->prev
+      temp->prev = NULL;
+      //delete the ptr of temp that points to temp->next
+      //the next is already retained by curr;
+      temp->next = NULL;
+      //delete the node of temp
+      delete temp;
+      //set temp to Null for cycle to repeat;
+      temp = NULL;
+    }
+    printf("completed deletion");
+    return;
+    }
+    else{
+      printf("Oops, something went wrong");
+      return;
+      //do nothing
+    }
+  }
 
 /**
  * Makes the current object into a copy of the parameter:
