@@ -9,6 +9,7 @@
  */
 Chain::~Chain(){
   Node* curr;
+  Node* temp;
   // If there is no prev or next, then we delete the head
   if (head_->next == NULL && head_->prev == NULL){
     delete head_;
@@ -17,6 +18,25 @@ Chain::~Chain(){
   }
   // If there is something after the head,
   if (head_->next != NULL){
+    //If curr is not head
+    //This should increment it all the way until we get back
+    //to the start again once we reach the last node 
+    while (curr != head_){
+      //set up temporary variable to delete stuff
+      temp = curr;
+      //Increment the curr to the next one
+      curr = temp->next
+      //delete the ptr of temp that points to temp->prev
+      temp->prev = NULL;
+      //delete the ptr of temp that points to temp->next
+      //the next is already retained by curr;
+      temp->next = NULL;
+      //delete the node of temp
+      delete temp;
+      //set temp to Null for cycle to repeat;
+      temp = NULL;
+    }
+
     //After deleting all nodes except head.
     //delete the value of head_->next
     delete head_-> next;
@@ -31,7 +51,8 @@ Chain::~Chain(){
     //delete the value of head_
     delete head_;
     //set the pointer of prev to NULL
-    head_ = NULL;   
+    head_ = NULL;  
+    //Ends the function 
     return;
     }
   }
