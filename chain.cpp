@@ -17,8 +17,6 @@ Chain::~Chain(){
   }
   // If there is something after the head,
   if (head_->next != NULL){
-
-    }
     //After deleting all nodes except head.
     //delete the value of head_->next
     delete head_-> next;
@@ -37,7 +35,6 @@ Chain::~Chain(){
     return;
     }
   }
-}
 
 /**
  * Inserts a new node at the end of the List.
