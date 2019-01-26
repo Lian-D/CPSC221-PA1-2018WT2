@@ -44,7 +44,10 @@ void Block::render(PNG & img, int column) const{
   for(unsigned y = 0; y < height(); y++){
     for(int x = column; x < (width() + column); x++){
       HSLAPixel* pixel = img.getPixel(x,y);
+      pixel->h = data[y][x-column].h;
       pixel->s = data[y][x-column].s;
+      pixel->l = data[y][x-column].l;
+      pixel->a = data[y][x-column].a;
     }
   }
 }
