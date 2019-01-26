@@ -8,7 +8,26 @@
  * memory does not leak on destruction of a chain.
  */
 Chain::~Chain(){
-  /* your code here */
+  // If there is no prev or next, then we delete the head
+  if (head_->next == NULL && head_->prev == NULL){
+     delete[] head_;
+     head_ = NULL;   
+     return;  
+  }
+  // if there is no prev, we set the head to prev, set the new head to the next
+  // delete the old head via prev
+  // then invoke the destructor again to delete the next node until we hit the base case of no next.
+  if (head_->prev == NULL && head_->next != NULL){
+    prev = head_;
+    head_ = head_->next;
+    delete[] prev;
+    prev = NULL;
+    ~chain();
+  }
+  else {
+    printf("Oops something went wrong, but we will stop the infinite loop");
+    return;
+  }
 }
 
 /**
