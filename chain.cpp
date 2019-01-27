@@ -103,6 +103,18 @@ void Chain::moveBack(int startPos, int len, int dist){
  */
 void Chain::roll(int k){
   /* your code here */
+  Node* rstart = walk(head_->next, (length_ - 1 -(k - 1)));
+  Node* rend = walk(head_->next, (length_ - 1));
+
+  Node* first = head_->next;
+  Node* brstart = walk(head_->next, (length_ - 2 - (k - 1)));
+
+  rstart->prev = head_;
+  head_->next = rstart;
+  brstart->next = head_;
+  head_->prev = brstart;
+  rend->next = first;
+  first->prev = rend;
 }
 
 /**
@@ -114,6 +126,18 @@ void Chain::roll(int k){
  */
 void Chain::reverseSub(int pos1, int pos2){
   /* your code here */
+  Node* posi1 = walk(head_->next, (pos1 - 1));
+  Node* posi2 = walk(head_->next, (pos2 - 1));
+
+  int dist = (pos2 - pos1);
+  int spos2 = pos2;
+  int spos1 = pos1;
+  int j = 1;
+  moveBack(pos2,1,-(dist + 1));
+  for(int i = 1; i <= (pos2 - pos1 -1); i++){
+    moveBack((pos1 + 1),1,(dist - j));
+    j++;
+  }
 }
 
 /*
