@@ -42,7 +42,13 @@ Chain::~Chain(){
     printf("done deleting chain");  
     return;
     //Ends the function
-  } 
+  }
+  // NATE VER
+  //  clear();
+  // head_->next = NULL;
+  // head_->prev = NULL;
+  // delete head_;
+  // head_ = NULL; 
 }
 
 /**
@@ -86,13 +92,19 @@ void Chain::moveBack(int startPos, int len, int dist){
 
   Node* t1 = walk(head_, (startPos + len + dist - 1));
   Node* t2 = walk(head_, (startPos + len + dist));
+  
+  if (dist == 0){
+      cout << "not moving, distance is zero" << endl;
+  }
 
-  curr->prev = t1;
-  t1->next = curr;
-  bcurr->next = aend;
-  aend->prev = bcurr;
-  t2->prev = end;
-  end->next = t2; 
+  else{
+    curr->prev = t1;
+    t1->next = curr;
+    bcurr->next = aend;
+    aend->prev = bcurr;
+    t2->prev = end;
+    end->next = t2; 
+   }
 }
 
 /**
@@ -203,6 +215,21 @@ void Chain::clear() {
       return;
       //do nothing
     }
+
+    //NATE VER
+    // int length = length_;
+ 
+    // for(int i = 1; i <= length; i++){
+    //   Node* start = head_->prev;
+    //   Node* bstart = head_->prev->prev;
+    //   bstart->next = head_;
+    //   head_->prev = bstart;
+    //   start->next = NULL;
+    //   start->prev = NULL;
+    //   delete start;
+    //   start = NULL;
+    //   length_--;
+    //  }
   }
 
 /**
