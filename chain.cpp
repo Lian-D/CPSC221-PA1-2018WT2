@@ -47,7 +47,6 @@ Chain::~Chain(){
   // head_->prev = NULL;
   // delete head_;
   // head_ = NULL; 
-}
 
 /**
  * Inserts a new node at the end of the List.
