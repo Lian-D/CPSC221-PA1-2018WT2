@@ -139,16 +139,30 @@ void Chain::reverseSub(int pos1, int pos2){
 * cout << "Block sizes differ." << endl;
 */
 void Chain::weave(Chain & other) { 
+  Node* retained
   Node* curr; // will represent the current node we are on
-  curr = head_->next;
+  curr = head_->next; // This is the first node of curr
+  
+  Node* oretained
+  Node* ocurr; // will represent the current of other we are on
+  ocurr = other.head_->next; // This is the first node of other
 
-  Node* ocurr; // will represent the current node we are on
-  ocurr = other.head_->next;
-
-  Node* temp;
-  if (width_ != other.width_ || height_ != other.height_){
+  // Condition if the width or height are not right
+  if (width_ != other.width_ && height_ != other.height_){
     cout << "Block sizes differ." << endl;
-    return;
+  }
+  // this is where we will start to go through the list
+  else {
+    for (int i = 0; i < length_; i++){
+      retained = curr;
+      curr = curr->next;
+
+      oretained = ocurr;
+      ocurr = ocurr->next
+
+      retained->next = ocurr
+    }
+
   }
 }
 
@@ -188,4 +202,20 @@ void Chain::clear() {
  * constructor and the assignment operator for Chains.
  */
 void Chain::copy(Chain const& other) {
+  Node* othercurr = other.head_->next;
+  Node* curr = head_;
+  
+  for(int i = 1; i <= other.size(); i++){
+     Node* newnode = new Node(othercurr->data);
+     height_ = othercurr->data.height();
+     width_ = othercurr->data.width();
+     curr->next = newnode;
+     newnode->prev = curr;
+     newnode->next = head_;
+     head_->prev = newnode; 
+     othercurr = othercurr->next;
+     curr = curr->next;
+     length_++;
+  }
+  
 }
