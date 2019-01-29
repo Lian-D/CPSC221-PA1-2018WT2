@@ -151,6 +151,10 @@ public:
     */
    void moveBack(int startPos, int len, int dist);
 
+
+   // Checks whether the chain can move the specified distance, and returns the distance accordingly
+   int checkAndReturn(int startPos, int len, int dist);
+
    /**
     * Rolls the current Chain by k nodes: reorders the current list
     * so that the first k nodes are the (n-k+1)th, (n-k+2)th, ... , nth
