@@ -14,7 +14,6 @@ Chain::~Chain(){
   delete head_;
   head_=NULL;
     }
-  // NATE VER
   //  clear();
   // head_->next = NULL;
   // head_->prev = NULL;
