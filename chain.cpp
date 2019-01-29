@@ -193,7 +193,7 @@ void Chain::weave(Chain & other) {
 
       other.head_->prev = NULL;
       other.head_->next = NULL;
-      length_ = (length_+(other.length_-length_));
+      length_ = (length_+other.length_);
     }
   }
 }
