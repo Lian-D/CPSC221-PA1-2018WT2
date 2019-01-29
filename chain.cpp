@@ -52,29 +52,31 @@ void Chain::insertBack(const Block & ndata){
  */
 void Chain::moveBack(int startPos, int len, int dist){
   /* your code here */
-  // dist = checkAndReturn(startPos, len, dist);
-  // Node* curr = walk(head_, startPos);
-  // Node* end = walk(head_, (startPos + len - 1));
+   if ((startPos + len - 1 + dist) >= length_ ){
+     dist = (length_ - startPos - len + 1);
+   }
+   Node* curr = walk(head_, startPos);
+   Node* end = walk(head_, (startPos + len - 1));
 
-  // Node* bcurr = walk(head_, (startPos - 1));
-  // Node* aend = walk(head_, (startPos + len));
+   Node* bcurr = walk(head_, (startPos - 1));
+   Node* aend = walk(head_, (startPos + len));
 
 
-  // Node* t1 = walk(head_, (startPos + len + dist - 1));
-  // Node* t2 = walk(head_, (startPos + len + dist));
+   Node* t1 = walk(head_, (startPos + len + dist - 1));
+   Node* t2 = walk(head_, (startPos + len + dist));
   
-  // if (dist == 0){
-  //      cout << "not moving, distance is zero" << endl;
-  // }
+   if (dist == 0){
+        cout << "not moving, distance is zero" << endl;
+   }
 
-  // else{
-  //    curr->prev = t1;
-  //    t1->next = curr;
-  //    bcurr->next = aend;
-  //    aend->prev = bcurr;
-  //    t2->prev = end;
-  //    end->next = t2; 
-  //   }
+   else{
+      curr->prev = t1;
+      t1->next = curr;
+      bcurr->next = aend;
+      aend->prev = bcurr;
+      t2->prev = end;
+      end->next = t2; 
+     }
 }
 
 /**
@@ -147,34 +149,6 @@ void Chain::weave(Chain & other) {
   if (width_ != other.width_ || height_ != other.height_){
     cout << "Block sizes differ." << endl;
     return;
-  }
-
-  int ilength = other.length_;
-  int increment = 0;
-  //while each one is not empty
-  while (increment =< ilength || other.head_->prev = NULL){
-    Node* retainedvalue;
-    //we want to save the element after two nexts
-    retainedvalue = curr->next->next;
-    temp = ocurr;
-    ocurr = ocurr->next;
-
-    //set the next value of curr
-    curr->next->next = temp;
-    //Sets the previous of 
-    temp->prev = curr->next;
-    temp->next = retainedvalue;
-    curr = retainedvalue->next;
-    increment++;
-    increment++;
-    length_++;
-  }
-  if (other.head_->prev == NULL){
-  }
-  if (increment => ilength){
-    head_->prev->next = ocurr;
-    other.head_->prev=head_;
-    length_ = length_ + (other.length_ - length_);
   }
 }
 
