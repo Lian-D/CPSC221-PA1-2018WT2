@@ -8,39 +8,12 @@
  * memory does not leak on destruction of a chain.
  */
 Chain::~Chain(){
-  // //If we are given an empty list to begin with
-  // if (head_->next == NULL && head_->prev == NULL){
-  //   //Delete the head; 
-  //   printf("deleting head");
-  //   delete head_;
-  //   head_ = NULL; 
-  //   length_ = 0;
-  //   height_ = 0;
-  //   width_ = 0;
-  //   printf("done deleting chain");
-  //   return;  
-  // }
-  // else {
-  //   //Clear all dynamically allocated data first
-  //   printf("deleting dynamic data");
-  //   clear();
-    
-  //   //After deleting all nodes except head.
-  //   //delete head_->next
-  //   head_->next = NULL;
-  //   //delete the head_->prev
-  //   head_->prev = NULL;
-  //   //delete head_
-  //   delete head_;
-  //   head_ = NULL;
-  //   length_ = 0;
-  //   height_ = 0;
-  //   width_ = 0;
-
-    printf("done deleting chain");  
-    return;
-    //Ends the function
-  }
+  clear();
+  head_->next = NULL;
+  head_->prev = NULL;
+  delete head_;
+  head_=NULL;
+    }
   // NATE VER
   //  clear();
   // head_->next = NULL;
@@ -79,29 +52,29 @@ void Chain::insertBack(const Block & ndata){
  */
 void Chain::moveBack(int startPos, int len, int dist){
   /* your code here */
-  dist = checkAndReturn(startPos, len, dist);
-  Node* curr = walk(head_, startPos);
-  Node* end = walk(head_, (startPos + len - 1));
+  // dist = checkAndReturn(startPos, len, dist);
+  // Node* curr = walk(head_, startPos);
+  // Node* end = walk(head_, (startPos + len - 1));
 
-  Node* bcurr = walk(head_, (startPos - 1));
-  Node* aend = walk(head_, (startPos + len));
+  // Node* bcurr = walk(head_, (startPos - 1));
+  // Node* aend = walk(head_, (startPos + len));
 
 
-  Node* t1 = walk(head_, (startPos + len + dist - 1));
-  Node* t2 = walk(head_, (startPos + len + dist));
+  // Node* t1 = walk(head_, (startPos + len + dist - 1));
+  // Node* t2 = walk(head_, (startPos + len + dist));
   
-  if (dist == 0){
-      cout << "not moving, distance is zero" << endl;
-  }
+  // if (dist == 0){
+  //      cout << "not moving, distance is zero" << endl;
+  // }
 
-  else{
-    curr->prev = t1;
-    t1->next = curr;
-    bcurr->next = aend;
-    aend->prev = bcurr;
-    t2->prev = end;
-    end->next = t2; 
-   }
+  // else{
+  //    curr->prev = t1;
+  //    t1->next = curr;
+  //    bcurr->next = aend;
+  //    aend->prev = bcurr;
+  //    t2->prev = end;
+  //    end->next = t2; 
+  //   }
 }
 
 /**
@@ -163,8 +136,46 @@ void Chain::reverseSub(int pos1, int pos2){
 * In that case, the result of the function should be:
 * cout << "Block sizes differ." << endl;
 */
-void Chain::weave(Chain & other) { // leaves other empty.
-  /* your code here */
+void Chain::weave(Chain & other) { 
+  Node* curr; // will represent the current node we are on
+  curr = head_->next;
+
+  Node* ocurr; // will represent the current node we are on
+  ocurr = other.head_->next;
+
+  Node* temp;
+  if (width_ != other.width_ || height_ != other.height_){
+    cout << "Block sizes differ." << endl;
+    return;
+  }
+
+  int ilength = other.length_;
+  int increment = 0;
+  //while each one is not empty
+  while (increment =< ilength || other.head_->prev = NULL){
+    Node* retainedvalue;
+    //we want to save the element after two nexts
+    retainedvalue = curr->next->next;
+    temp = ocurr;
+    ocurr = ocurr->next;
+
+    //set the next value of curr
+    curr->next->next = temp;
+    //Sets the previous of 
+    temp->prev = curr->next;
+    temp->next = retainedvalue;
+    curr = retainedvalue->next;
+    increment++;
+    increment++;
+    length_++;
+  }
+  if (other.head_->prev == NULL){
+  }
+  if (increment => ilength){
+    head_->prev->next = ocurr;
+    other.head_->prev=head_;
+    length_ = length_ + (other.length_ - length_);
+  }
 }
 
 
@@ -174,60 +185,26 @@ void Chain::weave(Chain & other) { // leaves other empty.
  * to zero.  After clear() the chain represents an empty chain.
  */
 void Chain::clear() {
-  // Node* curr;
-  // Node* temp;
-  // // If there is no prev or next,
-  // if (head_->next == NULL && head_->prev == NULL){
-  //   printf("empty list provided");
-  //   //Do nothing 
-  //   return;  
-  // }
-  // // If there is something after the head,
-  // if (head_->next != NULL){
-  //   printf("list with nodes provided");
-  //   //If curr is not head
-  //   //This should increment it all the way until we get back
-  //   //to the start again once we reach the last node 
-  //   while (curr != head_){
-  //     printf("looping to deleted a node");
-  //     //set up temporary variable to delete stuff
-  //     temp = curr;
-  //     //Increment the curr to the next one
-  //     curr = temp->next;
-  //     //delete the ptr of temp that points to temp->prev
-  //     temp->prev = NULL;
-  //     //delete the ptr of temp that points to temp->next
-  //     //the next is already retained by curr;
-  //     temp->next = NULL;
-  //     //delete the node of temp
-  //     delete temp;
-  //     //set temp to Null for cycle to repeat;
-  //     temp = NULL;
-  //   }
-  //   printf("completed deletion");
-  //   return;
-  //   }
-  //   else{
-  //     printf("Oops, something went wrong");
-  //     return;
-  //     //do nothing
-    }
+  Node* curr; // will represent the current node we are on
+  Node* temp; // will represent the node that we need to delete
 
-    //NATE VER
-    // int length = length_;
- 
-    // for(int i = 1; i <= length; i++){
-    //   Node* start = head_->prev;
-    //   Node* bstart = head_->prev->prev;
-    //   bstart->next = head_;
-    //   head_->prev = bstart;
-    //   start->next = NULL;
-    //   start->prev = NULL;
-    //   delete start;
-    //   start = NULL;
-    //   length_--;
-    //  }
+  if (head_->next == NULL && head_->prev == NULL){
+    //Do nothing, we're good
   }
+  else {
+    curr = head_->next;
+    while (curr !=head_){
+      temp = curr;
+      temp->prev = NULL;
+      curr = temp->next;
+      temp->next = NULL;
+
+      delete temp;
+      temp = NULL;
+    }
+  }
+  length_ = 0;
+    }
 
 /**
  * Makes the current object into a copy of the parameter:
@@ -237,5 +214,4 @@ void Chain::clear() {
  * constructor and the assignment operator for Chains.
  */
 void Chain::copy(Chain const& other) {
-  /* your code here */
 }
