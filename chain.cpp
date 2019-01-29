@@ -185,8 +185,6 @@ void Chain::weave(Chain & other) {
       curr->prev = oretained;
       }
       cout << "finished for loop" << endl;
-      curr -> next = ocurr;
-      ocurr -> prev = curr;
       temp = other.head_->prev;
       head_->prev =  temp;
       temp->next = head_;
