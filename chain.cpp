@@ -139,31 +139,31 @@ void Chain::reverseSub(int pos1, int pos2){
 * cout << "Block sizes differ." << endl;
 */
 void Chain::weave(Chain & other) { 
-  Node* retained;
-  Node* curr; // will represent the current node we are on
-  curr = head_->next; // This is the first node of curr
+  // Node* retained;
+  // Node* curr; // will represent the current node we are on
+  // curr = head_->next; // This is the first node of curr
   
-  Node* oretained;
-  Node* ocurr; // will represent the current of other we are on
-  ocurr = other.head_->next; // This is the first node of other
+  // Node* oretained;
+  // Node* ocurr; // will represent the current of other we are on
+  // ocurr = other.head_->next; // This is the first node of other
 
-  // Condition if the width or height are not right
-  if (width_ != other.width_ && height_ != other.height_){
-    cout << "Block sizes differ." << endl;
-  }
-  // this is where we will start to go through the list
-  else {
-    for (int i = 0; i < length_; i++){
-      retained = curr;
-      curr = curr->next;
+  // // Condition if the width or height are not right
+  // if (width_ != other.width_ && height_ != other.height_){
+  //   cout << "Block sizes differ." << endl;
+  // }
+  // // this is where we will start to go through the list
+  // else {
+  //   for (int i = 0; i < length_; i++){
+  //     retained = curr;
+  //     curr = curr->next;
 
-      oretained = ocurr;
-      ocurr = ocurr->next;
+  //     oretained = ocurr;
+  //     ocurr = ocurr->next;
 
-      retained->next = ocurr;
-    }
+  //     retained->next = ocurr;
+  //   }
 
-  }
+  // }
 }
 
 
