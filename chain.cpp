@@ -139,11 +139,11 @@ void Chain::reverseSub(int pos1, int pos2){
 * cout << "Block sizes differ." << endl;
 */
 void Chain::weave(Chain & other) { 
-  Node* retained
+  Node* retained;
   Node* curr; // will represent the current node we are on
   curr = head_->next; // This is the first node of curr
   
-  Node* oretained
+  Node* oretained;
   Node* ocurr; // will represent the current of other we are on
   ocurr = other.head_->next; // This is the first node of other
 
@@ -158,9 +158,9 @@ void Chain::weave(Chain & other) {
       curr = curr->next;
 
       oretained = ocurr;
-      ocurr = ocurr->next
+      ocurr = ocurr->next;
 
-      retained->next = ocurr
+      retained->next = ocurr;
     }
 
   }
@@ -217,5 +217,5 @@ void Chain::copy(Chain const& other) {
      curr = curr->next;
      length_++;
   }
-  
+
 }
