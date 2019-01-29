@@ -14,7 +14,6 @@ Chain::~Chain(){
   delete head_;
   head_=NULL;
     }
-  // NATE VER
   //  clear();
   // head_->next = NULL;
   // head_->prev = NULL;
@@ -87,18 +86,12 @@ void Chain::moveBack(int startPos, int len, int dist){
  */
 void Chain::roll(int k){
   /* your code here */
-  Node* rstart = walk(head_->next, (length_ - 1 -(k - 1)));
-  Node* rend = walk(head_->next, (length_ - 1));
-
-  Node* first = head_->next;
-  Node* brstart = walk(head_->next, (length_ - 2 - (k - 1)));
-
-  rstart->prev = head_;
-  head_->next = rstart;
-  brstart->next = head_;
-  head_->prev = brstart;
-  rend->next = first;
-  first->prev = rend;
+ if(k == length_){
+    cout << "roll entire chain" << endl;
+  }
+  else{
+  moveBack(1,(length_- k),k);
+  }
 }
 
 /**
