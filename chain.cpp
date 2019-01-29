@@ -183,12 +183,14 @@ void Chain::weave(Chain & other) {
       oretained->prev = retained;
       oretained->next = curr;
       curr->prev = oretained;
-      length_++;
       }
-       cout << "finished for loop" << endl;
+      cout << "finished for loop" << endl;
+      curr -> next = ocurr;
+      ocurr -> prev = curr;
       temp = other.head_->prev;
       head_->prev =  temp;
       temp->next = head_;
+
       other.head_->prev = NULL;
       other.head_->next = NULL;
       length_ = (length_+(other.length_-length_));
