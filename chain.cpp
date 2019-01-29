@@ -139,31 +139,68 @@ void Chain::reverseSub(int pos1, int pos2){
 * cout << "Block sizes differ." << endl;
 */
 void Chain::weave(Chain & other) { 
-  // Node* retained;
-  // Node* curr; // will represent the current node we are on
-  // curr = head_->next; // This is the first node of curr
+  Node* retained;
+  Node* curr; // will represent the current node we are on
+  curr = head_->next; // This is the first node of curr
   
-  // Node* oretained;
-  // Node* ocurr; // will represent the current of other we are on
-  // ocurr = other.head_->next; // This is the first node of other
+  Node* oretained;
+  Node* ocurr; // will represent the current of other we are on
+  ocurr = other.head_->next; // This is the first node of other
 
-  // // Condition if the width or height are not right
-  // if (width_ != other.width_ && height_ != other.height_){
-  //   cout << "Block sizes differ." << endl;
-  // }
-  // // this is where we will start to go through the list
-  // else {
-  //   for (int i = 0; i < length_; i++){
-  //     retained = curr;
-  //     curr = curr->next;
+  Node* temp;
+  // Condition if the width or height are not right
+  if (width_ != other.width_ && height_ != other.height_){
+    cout << "Block sizes differ." << endl;
+  }
+  // this is where we will start to go through the list
+  else {
+     cout << "Ours is bigger" << endl;
+    if (length_ >= other.length_){
+       cout << "made it to for loop" << endl;
+      for (int i = 0; i < other.length_ ; i++){
+      retained = curr;
+      curr = curr->next;
 
-  //     oretained = ocurr;
-  //     ocurr = ocurr->next;
+      oretained = ocurr;
+      ocurr = ocurr->next;
 
-  //     retained->next = ocurr;
-  //   }
+      retained->next = oretained;
+      oretained->prev = retained;
+      oretained->next = curr;
+      curr->prev = oretained;
+      length_++;
+      }
+      cout << "finished for loop" << endl;
+      curr->prev = oretained;
+      oretained->next = curr;
+      other.head_->prev = NULL;
+      other.head_->next = NULL;
+      length_++;
+    }
+    else if (length_ < other.length_){
+       cout << "Other is bigger" << endl;
+      for (int i = 0; i < length_; i++){
+      retained = curr;
+      curr = curr->next;
 
-  // }
+      oretained = ocurr;
+      ocurr = ocurr->next;
+
+      retained->next = oretained;
+      oretained->prev = retained;
+      oretained->next = curr;
+      curr->prev = oretained;
+      length_++;
+      }
+       cout << "finished for loop" << endl;
+      temp = other.head_->prev;
+      head_->prev =  temp;
+      temp->next = head_;
+      other.head_->prev = NULL;
+      other.head_->next = NULL;
+      length_ = (length_+(other.length_-length_));
+    }
+  }
 }
 
 
