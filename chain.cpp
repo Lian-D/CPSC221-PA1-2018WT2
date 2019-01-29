@@ -27,10 +27,8 @@ Chain::~Chain(){
     
     //After deleting all nodes except head.
     //delete head_->next
-    delete head_-> next;
     head_->next = NULL;
     //delete the head_->prev
-    delete head_-> prev;
     head_->prev = NULL;
     //delete head_
     delete head_;
